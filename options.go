@@ -35,6 +35,9 @@ const (
 	// RemoveKeyboard = ReplyMarkup.RemoveKeyboard
 	RemoveKeyboard
 
+	// IgnoreThread is used to ignore the thread when responding to a message via context.
+	IgnoreThread
+
 	// HasSpoiler = SendOptions.HasSpoiler
 	HasSpoiler
 )
@@ -120,6 +123,8 @@ func (b *Bot) extractOptions(how []interface{}) *SendOptions {
 			}
 		case *ReplyParams:
 			opts.ReplyParams = opt
+		case *Topic:
+			opts.ThreadID = opt.ThreadID
 		case Option:
 			switch opt {
 			case NoPreview:
